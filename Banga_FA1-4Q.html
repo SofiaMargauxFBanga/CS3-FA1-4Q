@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>FA 1</title>
+<style>
+  body {
+    font-family: sans-serif;
+    background-color: #D3D3D3;
+  }
+  .box {
+    width: 550px;
+    margin: 30px auto;
+    border: 2px solid #39FF14;
+    padding: 20px;
+    background-color: #C4A484;
+    border-radius: 8px;
+  }
+  input {
+    width: 95%;
+    padding: 5px;
+    margin-bottom: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  button {
+    padding: 10px 15px;
+    background-color: #4682b4;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-right: 10px;
+  }
+  .error {
+    color: red;
+    margin-bottom: 5px;
+  }
+</style>
+</head>
+<body>
+
+<div class="box">
+  <h2>Philippine Animal Wellfare Society (PAWS🐾)</h2>
+  <p>As we know, there are countless of dogs and cats who are looking for a place to call their home. That is why Philippine Animal Wellfare Society (PAWS) exist! Not only do we give them a home, but we make sure to keep them safe from cruelty and save them from past neglect. We also reach out for donations to keep these angels happy. So, donate for these kind souls, or apply now using the form below to be a member of our society!🐾</p>
+
+  <form id="myform">
+    <div id="errors"></div>
+
+    <label>First Name:</label>
+    <input type="text" id="fname" required>
+
+    <label>Last Name:</label>
+    <input type="text" id="lname" required>
+
+    <p>Sex:</p>
+    <input type="radio" id="male" name="sex" value="male" required>
+    <label for="male">Boy</label><br>
+    <input type="radio" id="female" name="sex" value="female" required>
+    <label for="female">Girl</label><br>
+    <input type="radio" id="other" name="sex" value="other" required>
+    <label for="other">Other</label><br>
+
+    <label>Email:</label>
+    <input type="email" id="email" required>
+    
+    <label>Contact Number (Optional):</label>
+    <input type="tel" id="phone">
+
+    <button type="submit">Go!</button>
+    <button type="reset">Again</button>
+  </form>
+</div>
+
+<script>
+  document.getElementById('myform').addEventListener('submit', function(event) {
+    let errors = [];
+    let fname = document.getElementById('fname').value;
+    let lname = document.getElementById('lname').value;
+    let sex = document.querySelector('input[name="sex"]:checked');
+    let email = document.getElementById('email').value;
+
+    if (!fname) { errors.push("Name?"); }
+    if (!lname) { errors.push("Last name?"); }
+    if (!sex) { errors.push("Sex?"); }
+    if (!email) { errors.push("Email?"); }
+
+    if (errors.length > 0) {
+      event.preventDefault();
+      document.getElementById('errors').innerHTML = errors.map(err => '<p class="error">' + err + '</p>').join('');
+    } else {
+      document.getElementById('errors').innerHTML = '';
+    }
+  });
+</script>
+
+</body>
+</html>
